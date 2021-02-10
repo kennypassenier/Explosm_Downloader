@@ -25,15 +25,15 @@ for _ in range(comicNr, upperLimit):
         soup = BeautifulSoup(content, "html.parser")
         # Find the src tag of the image
         encodedUrl = f"http:{quote(soup.find('img', {'id': 'main-comic'}).get('src'))}"
-        # Some images have text after the MIMEtype, so we get rid of that first
+        # Some images have text after the file extension, so we get rid of that first
         # The text always starts with a ?, which looks like "%3F" when encoded
         endIndex = encodedUrl.find("%3F")
         if(endIndex != -1):
             encodedUrl = encodedUrl[:endIndex]
-        # Now we can extract the MIMEtype and save it to disk
-        mime = encodedUrl[-4:]
+        # Now we can extract the file extension and save it to disk
+        extension = encodedUrl[-4:]
         # Download the image as a file
-        urlretrieve(encodedUrl, f"Comic - {str(comicNr)}{mime}")
+        urlretrieve(encodedUrl, f"Comic - {str(comicNr)}{extension}")
     except:
         print("Error, URL might not exist")
 
