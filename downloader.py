@@ -28,7 +28,7 @@ for _ in range(comicNr, upperLimit):
         # Some images have text after the file extension, so we get rid of that first
         # The text always starts with a ?, which looks like "%3F" when encoded
         endIndex = encodedUrl.find("%3F")
-        if(endIndex != -1):
+        if endIndex != -1:
             encodedUrl = encodedUrl[:endIndex]
         # Now we can extract the file extension and save it to disk
         extension = encodedUrl[-4:]
